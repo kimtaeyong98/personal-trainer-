@@ -25,3 +25,5 @@ print(distance_user_head)
 trainer_angle=compare.angle(trainer_csv_path,8,9,10)
 print(trainer_angle)
 
+#부위별 좌표 csv 받아와서 방향 csv 생성
+compare.direction(trainer_csv_path)
