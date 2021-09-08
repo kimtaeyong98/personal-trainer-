@@ -18,12 +18,13 @@ compare.check(user_csv_path)
 #이동한 거리(머리)
 distance_trainer_head=compare.distance(trainer_csv_path,str(0))
 distance_user_head=compare.distance(user_csv_path,str(0))
-print(distance_trainer_head)
-print(distance_user_head)
+#print(distance_trainer_head)
+#print(distance_user_head)
 
 #각도(왼쪽 무릎)
 trainer_angle=compare.angle(trainer_csv_path,8,9,10)
-print(trainer_angle)
+#print(trainer_angle)
 
 #부위별 좌표 csv 받아와서 방향 csv 생성
-compare.direction(trainer_csv_path)
+compare.direction(trainer_csv_path,'trainer')
+compare.direction(user_csv_path,'user')

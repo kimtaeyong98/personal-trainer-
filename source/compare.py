@@ -86,7 +86,7 @@ def angle(path,first,second,third):
     return angle_list
 
 #전프레임에서 다음프레임 부위 이동방향 구하는 함수
-def direction(path):
+def direction(path,User_classification):
     data = pd.read_csv(path)
     row_count=len(data) #프레임수
     df_new=pd.DataFrame()
@@ -129,7 +129,10 @@ def direction(path):
         df_new=df_new.append(df[i])
     
     df_new=df_new.transpose()
-    df_new.to_csv("direct.csv", index = False)
+    if User_classification=='trainer':
+        df_new.to_csv("./trainer/direct.csv", index = False)
+    else:
+        df_new.to_csv("./user/direct.csv", index = False)
     return df_new    
     
 
