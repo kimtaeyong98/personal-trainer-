@@ -84,8 +84,53 @@ def angle(path,first,second,third):
 
 
     return angle_list
+
+#전프레임에서 다음프레임 부위 이동방향 구하는 함수
+def direction(path):
+    data = pd.read_csv(path)
+    row_count=len(data) #프레임수
+    df_new=pd.DataFrame()
     
+    for i in range(0,15):
+        df=pd.DataFrame(columns=["id",i])
+        for j in range(0, row_count-1):
+            
+            #처음 좌표
+            data_1=data.iat[j,i]
+            x1,y1=data_1.split(", ")
+            x1,y1=int(x1),int(y1)
     
+            data_2=data.iat[j+1,i]
+            x2,y2=data_2.split(", ")
+            x2,y2=int(x2),int(y2)
+
+            a=math.atan2(-(y2-y1),x2-x1)*(180/math.pi) # 방위각 계산, cv좌표계 -> y축변환
+            
+            if x1==x2 and y1==y2:
+                direct="＃" #움직임 없음
+            elif 0<=a<=45: 
+                direct=1 # →에서 ↗까지
+            elif 45<a<=90: 
+                direct=2 # ↗에서 ↑까지
+            elif 90<a<=135:
+                direct=3 # ↑에서 ↖까지
+            elif 135<a<=180:
+                direct=4 # ↖에서 ←까지
+            elif -180<a<=-135: 
+                direct=5 # ←에서 ↙까지
+            elif -135<a<=-90: 
+                direct=6 # ↙에서 ↓까지
+            elif -90<a<=-45: 
+                direct=7 # ↓에서 ↘까지
+            elif -45<a<0:
+                direct=8 #↘에서 →까지
+        
+            df= df.append(pd.DataFrame([[j,direct]], columns=["id",i]), ignore_index=True)
+        df_new=df_new.append(df[i])
+    
+    df_new=df_new.transpose()
+    df_new.to_csv("direct.csv", index = False)
+    return df_new    
     
 
 
