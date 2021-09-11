@@ -1,4 +1,8 @@
 # personal-trainer
-사용자의 운동 영상과 트레이너의 운동영상을 비교하여 일치율을 출력하는 프로그램
 
-개발중...
+대역폭 문제로 다른 repository로 옮겼습니다.
+
+https://github.com/kimtaeyong98/personal-trainer
+
+로 들어와주세요.
+
