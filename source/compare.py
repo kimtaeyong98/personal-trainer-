@@ -134,17 +134,62 @@ def direction(path,User_classification):
     else:
         df_new.to_csv("./user/direct.csv", index = False)
     return df_new    
+
+
+# 3대운동 부위별 각도 계산
+
+# 1. 벤치프레스
+def benchpress_angle(path):
+    data = pd.read_csv(path)
+    row,column =data.shape
+    row=int(row)
+    column=int(column)
+    data=pd.read_csv(path)
+    row,column=data.shape
+    row=int(row)
+    column=int(column)
     
+    left_arm = angle(path, 5,6,7) # 왼팔
+    right_arm = angle(path, 2,3,4) # 오른팔
+    benchpress = [left_arm, right_arm]
+    
+    return benchpress
+    
+# 2. 데드리프트
+def deadlift_angle(path):
+    data=pd.read_csv(path)
+    row,column=data.shape
+    row=int(row)
+    column=int(column)
+    data=pd.read_csv(path)
+    row,column=data.shape
+    row=int(row)
+    column=int(column)
+    
+    back_neck = angle(path, 0,1,14)
+    back_right_knee = angle(path, 8,9,10) # 오른쪽 뒷무릎
+    right_arm = angle(path, 2,3,4) # 오른팔
+    spine = angle(path, 2,14,8)
+    deadlift = [back_neck, back_right_knee, right_arm, spine]
+    
+    return deadlift
 
-
-
-
-
-
-
-
-
-
-
-
-
+# 3. 스쿼트
+def squat_angle(path):
+    data=pd.read_csv(path)
+    row,column=data.shape
+    row=int(row)
+    column=int(column)
+    data=pd.read_csv(path)
+    row,column=data.shape
+    row=int(row)
+    column=int(column)
+    
+    back_neck = angle(path, 0,1,14)
+    back_right_knee = angle(path, 8,9,10) # 오른쪽 뒷무릎
+    spine = angle(path, 2,14,8)
+    squat = [back_neck, back_right_knee, spine]
+    
+    return squat
+    
+    
